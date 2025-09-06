@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[DisallowMultipleComponent]
 public class BallSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject ballPrefab;

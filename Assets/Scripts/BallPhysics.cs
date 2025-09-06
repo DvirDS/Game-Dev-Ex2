@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
 public class BallPhysics : MonoBehaviour
 {
     [SerializeField] float startSpeed = 7f;
@@ -20,6 +19,7 @@ public class BallPhysics : MonoBehaviour
         rb.freezeRotation = true;
     }
 
+    // Sets initial velocity from angle (deg) at speed max(startSpeed, minSpeed)
     public void SetInitialAngle(float angleDeg)
     {
         Vector2 dir = new Vector2(Mathf.Cos(angleDeg * Mathf.Deg2Rad), Mathf.Sin(angleDeg * Mathf.Deg2Rad));
@@ -42,6 +42,7 @@ public class BallPhysics : MonoBehaviour
             GameEvents.PlayerHit?.Invoke();
             return;
         }
+        // Adds a small random angle change on collisions to avoid "perfect loops"
         float jitterDeg = Random.Range(-2f, 2f);
         float rad = jitterDeg * Mathf.Deg2Rad;
         var v = rb.linearVelocity;
