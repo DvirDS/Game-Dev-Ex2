@@ -751,8 +751,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprintMod: 1.5
-  speed: 0
-  jumpSpeed: 0
+  speed: 10
+  jumpSpeed: 8
 --- !u!70 &621798995
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
