@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
         inputActions.Player.Jump.performed += OnJumpPerformed;
         inputActions.Player.Sprint.started += OnSprintStarted;
         inputActions.Player.Sprint.canceled += OnSprintCanceled;
-        GameEvents.GameOver += OnGameOver;
+        GameEvents.GameOver += OnGameOver; 
     }
 
     private void OnSprintCanceled(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
@@ -106,11 +106,10 @@ public class PlayerMovement : MonoBehaviour
     private void OnDisable()
     {
         GameEvents.GameOver -= OnGameOver;
-
         inputActions.Player.Disable();
         inputActions.Player.Move.performed -= OnMovePerformed;
         inputActions.Player.Move.canceled -= OnMoveCanceled;
-        inputActions.Player.Jump.performed -= OnJumpPerformed;  
+        inputActions.Player.Jump.performed -= OnJumpPerformed;
         inputActions.Player.Sprint.started -= OnSprintStarted;
         inputActions.Player.Sprint.canceled -= OnSprintCanceled;
     }
