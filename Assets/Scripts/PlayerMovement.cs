@@ -24,9 +24,9 @@ public class PlayerMovement : MonoBehaviour
         inputActions.Player.Move.performed += OnMovePerformed;
         inputActions.Player.Move.canceled += OnMoveCanceled;
         inputActions.Player.Jump.performed += OnJumpPerformed;
-        //inputActions.Player.ChangeColor.performed += OnChangeColorPerformed;
         inputActions.Player.Sprint.started += OnSprintStarted;
         inputActions.Player.Sprint.canceled += OnSprintCanceled;
+        GameEvents.GameOver += OnGameOver;
     }
 
     private void OnSprintCanceled(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
@@ -39,20 +39,14 @@ public class PlayerMovement : MonoBehaviour
         speed *= sprintMod;
     }
 
-    private void OnChangeColorPerformed(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
-    {
-        sprite.color = UnityEngine.Random.ColorHSV();
-    }
-
     private void OnJumpPerformed(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
     {
         if (!isGrounded) return;
-
         HandleJump();
     }
 
     private void OnMoveCanceled(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
-  => directionX = 0;
+        => directionX = 0;
 
     private void OnMovePerformed(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
     {
@@ -111,12 +105,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDisable()
     {
+        GameEvents.GameOver -= OnGameOver;
+
         inputActions.Player.Disable();
         inputActions.Player.Move.performed -= OnMovePerformed;
         inputActions.Player.Move.canceled -= OnMoveCanceled;
-        inputActions.Player.Jump.performed -= OnJumpPerformed;
-        //inputActions.Player.ChangeColor.performed -= OnChangeColorPerformed;
+        inputActions.Player.Jump.performed -= OnJumpPerformed;  
         inputActions.Player.Sprint.started -= OnSprintStarted;
         inputActions.Player.Sprint.canceled -= OnSprintCanceled;
+    }
+
+    private void OnGameOver()
+    {
+        directionX = 0f;
+        if (rb) rb.linearVelocity = Vector2.zero;
+        enabled = false;
     }
 }

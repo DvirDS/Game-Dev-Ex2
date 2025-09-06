@@ -37,6 +37,11 @@ public class BallPhysics : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D c)
     {
+        if (c.collider.CompareTag("Player"))
+        {
+            GameEvents.PlayerHit?.Invoke();
+            return;
+        }
         float jitterDeg = Random.Range(-2f, 2f);
         float rad = jitterDeg * Mathf.Deg2Rad;
         var v = rb.linearVelocity;
