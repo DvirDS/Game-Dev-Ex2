@@ -418,6 +418,10 @@ PrefabInstance:
       value: 0.65327126
       objectReference: {fileID: 0}
     - target: {fileID: 149286834786537466, guid: 10350eb1821f1d14cbffdeebc0906591, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: b42ef626011ccff4d9bebcb3387f444e, type: 2}
+    - target: {fileID: 149286834786537466, guid: 10350eb1821f1d14cbffdeebc0906591, type: 3}
       propertyPath: m_Offset.x
       value: 0.17336437
       objectReference: {fileID: 0}
@@ -542,6 +546,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94dd5dae2e0f3cd4a8d332158f216110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pausedTimeScale: 0
+  normalTimeScale: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,6 +1206,9 @@ MonoBehaviour:
   spawnRight: {fileID: 1294782173}
   spawnDelay: 15
   spawnOnStart: 1
+  leftAngleDeg: 330
+  rightAngleDeg: 210
+  rightSideProbability: 0.5
 --- !u!4 &756623183
 Transform:
   m_ObjectHideFlags: 0
@@ -2070,6 +2079,10 @@ PrefabInstance:
       propertyPath: m_Size.x
       value: 0.64855325
       objectReference: {fileID: 0}
+    - target: {fileID: 149286834786537466, guid: 10350eb1821f1d14cbffdeebc0906591, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: b42ef626011ccff4d9bebcb3387f444e, type: 2}
     - target: {fileID: 149286834786537466, guid: 10350eb1821f1d14cbffdeebc0906591, type: 3}
       propertyPath: m_Offset.x
       value: -0.17572337

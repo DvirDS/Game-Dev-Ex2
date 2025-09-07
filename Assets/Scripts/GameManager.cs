@@ -4,6 +4,8 @@ public class GameManager : MonoBehaviour
 {
     float elapsed;
     bool isGameOver;
+    [SerializeField] float pausedTimeScale = 0f;
+    [SerializeField] float normalTimeScale = 1f;
 
     void OnEnable()
     {
@@ -26,7 +28,7 @@ public class GameManager : MonoBehaviour
     {
         if (isGameOver) return;
         isGameOver = true;
-        Time.timeScale = 0f;
+        Time.timeScale = pausedTimeScale;
         GameEvents.GameOver?.Invoke();
     }
 
@@ -34,7 +36,7 @@ public class GameManager : MonoBehaviour
     {
         isGameOver = false;
         elapsed = 0f;
-        Time.timeScale = 1f;
+        Time.timeScale = normalTimeScale;
         UnityEngine.SceneManagement.SceneManager.LoadScene(
             UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
     }

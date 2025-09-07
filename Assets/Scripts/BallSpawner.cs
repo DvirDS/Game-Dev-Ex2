@@ -7,6 +7,9 @@ public class BallSpawner : MonoBehaviour
     [SerializeField] private Transform spawnRight;
     [SerializeField] private float spawnDelay = 5f;
     [SerializeField] private bool spawnOnStart = true;
+    [SerializeField] float leftAngleDeg = 330f;
+    [SerializeField] float rightAngleDeg = 210f;
+    [SerializeField, Range(0f, 1f)] float rightSideProbability = 0.5f;
 
     private float nextSpawnTime;
 
@@ -27,13 +30,12 @@ public class BallSpawner : MonoBehaviour
 
     public void Spawn()
     {
-        bool rightSide = Random.value < 0.5f;
+        bool rightSide = Random.value < rightSideProbability;
         Transform t = rightSide ? spawnRight : spawnLeft;
         if (!t || !ballPrefab) return;
 
         var go = Instantiate(ballPrefab, t.position, Quaternion.identity);
-        var bp = go.GetComponent<BallPhysics>();
-        if (!bp) bp = go.AddComponent<BallPhysics>();
-        bp.SetInitialAngle(rightSide ? 210f : 330f);
+        var bp = go.GetComponent<BallPhysics>() ?? go.AddComponent<BallPhysics>();
+        bp.SetInitialAngle(rightSide ? rightAngleDeg : leftAngleDeg);
     }
 }
